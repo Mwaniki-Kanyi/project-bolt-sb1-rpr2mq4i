@@ -1,0 +1,27 @@
+{
+  "name": "Sentry Jamii - Wildlife Conservation Platform",
+  "short_name": "Sentry Jamii",
+  "description": "Community-driven wildlife conservation platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A2A1A",
+  "theme_color": "#FFB000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/sentry_jamii_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/sentry_jamii_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "utilities", "education"],
+  "lang": "en",
+  "dir": "ltr"
+}
