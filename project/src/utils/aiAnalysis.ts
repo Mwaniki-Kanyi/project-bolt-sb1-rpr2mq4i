@@ -31,7 +31,7 @@ export async function analyzeAnimalImage(file: File): Promise<{ animalType: stri
   const confidence = Math.floor(Math.random() * 9) + 92; // 92 to 100
 
   // Simulate async behavior
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   return { animalType: `${animalType} (${confidence}%)` };
 }
