@@ -12,28 +12,36 @@ export const UserTypeSelection: React.FC<UserTypeSelectionProps> = ({ onSelectUs
     {
       id: 'community',
       title: 'Community Member',
+      swahili: 'Mwanajamii',
       description: 'Report wildlife sightings and contribute to conservation',
+      descriptionSw: 'Ripoti kuona wanyamapori na changia uhifadhi',
       icon: Users,
       color: 'text-blue-400'
     },
     {
       id: 'anonymous',
       title: 'Anonymous Member',
+      swahili: 'Mwanachama Asiyejulikana',
       description: 'Report wildlife without creating an account',
+      descriptionSw: 'Ripoti wanyamapori bila kuunda akaunti',
       icon: UserX,
       color: 'text-green-400'
     },
     {
       id: 'ranger',
       title: 'Ranger',
+      swahili: 'Mlinzi',
       description: 'Review and manage wildlife reports',
+      descriptionSw: 'Kagua na simamia ripoti za wanyamapori',
       icon: Shield,
       color: 'text-amber-400'
     },
     {
       id: 'admin',
       title: 'Admin',
+      swahili: 'Msimamizi',
       description: 'Full system access and analytics dashboard',
+      descriptionSw: 'Ufikiaji kamili wa mfumo na dashibodi ya takwimu',
       icon: Settings,
       color: 'text-red-400'
     }
@@ -52,8 +60,12 @@ export const UserTypeSelection: React.FC<UserTypeSelectionProps> = ({ onSelectUs
             alt="Sentry Jamii"
             className="w-20 h-20 mx-auto mb-6 rounded-xl shadow-lg"
           />
-          <h1 className="text-4xl font-bold text-white mb-4">Welcome to Sentry Jamii</h1>
-          <p className="text-white/80 text-lg">Choose your role to get started</p>
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Welcome to Sentry Jamii <span className="text-lg text-gray-300 ml-2">(Karibu Sentry Jamii)</span>
+          </h1>
+          <p className="text-white/80 text-lg">
+            Choose your role to get started <span className="text-sm text-gray-300 ml-2">(Chagua nafasi yako kuanza)</span>
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -75,10 +87,10 @@ export const UserTypeSelection: React.FC<UserTypeSelectionProps> = ({ onSelectUs
                       <Icon size={32} />
                     </div>
                     <h3 className="text-xl font-semibold text-white mb-2">
-                      {userType.title}
+                      {userType.title} <span className="text-sm text-gray-300 ml-2">({userType.swahili})</span>
                     </h3>
                     <p className="text-white/70">
-                      {userType.description}
+                      {userType.description} <span className="text-sm text-gray-300 ml-2">({userType.descriptionSw})</span>
                     </p>
                   </div>
                 </GlassCard>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Calendar, Clock, Download, Send, ArrowLeft } from 'lucide-react';
+import { MapPin, Calendar, Clock, Download, Send, ArrowLeft, Check } from 'lucide-react';
 import { GlassCard } from '../components/GlassCard';
 import { Button } from '../components/Button';
 import { LoadingSpinner } from '../components/LoadingSpinner';
@@ -127,6 +127,7 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
           tempId: newReport.id,
           user_id: newReport.user_id,
           animal_type: newReport.animal_type,
+          image_url: '', // No uploaded image URL when offline
           imageDataUrl,
           latitude: newReport.latitude,
           longitude: newReport.longitude,
@@ -156,10 +157,10 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
         <GlassCard className="text-center max-w-md w-full">
           <LoadingSpinner size="lg" />
           <h2 className="text-xl font-semibold text-white mt-6 mb-2">
-            Analyzing Image
+            Analyzing Image <span className="text-sm text-gray-300 ml-2">(Inachambua Picha)</span>
           </h2>
           <p className="text-white/70">
-            Our AI is identifying the wildlife in your photo...
+            Our AI is identifying the wildlife in your photo... <span className="text-sm text-gray-300 ml-2">(AI yetu inatambua mnyama kwenye picha yako...)</span>
           </p>
         </GlassCard>
       </div>
@@ -179,19 +180,23 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
             className="flex items-center text-white/80 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeft size={20} className="mr-2" />
-            Back
+            Back <span className="text-sm text-gray-300 ml-2">(Rudi Nyuma)</span>
           </button>
           
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">Wildlife Report</h1>
-            <p className="text-white/70">Review and submit your wildlife sighting</p>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              Wildlife Report <span className="text-sm text-gray-300 ml-2">(Ripoti ya Wanyamapori)</span>
+            </h1>
+            <p className="text-white/70">
+              Review and submit your wildlife sighting <span className="text-sm text-gray-300 ml-2">(Kagua na tuma taarifa ya mnyama uliyemuona)</span>
+            </p>
           </div>
         </motion.div>
 
         <div className="space-y-6">
           {error && (
             <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-3 text-red-200 text-sm">
-              {error}
+              {error} <span className="text-sm text-gray-300 ml-2">(Hitilafu)</span>
             </div>
           )}
 
@@ -207,24 +212,32 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
               
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Animal Identified</h3>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Animal Identified <span className="text-sm text-gray-300 ml-2">(Mnyama Aliyetambuliwa)</span>
+                  </h3>
                   <p className="text-amber-400 text-xl font-bold">{animalType}</p>
                 </div>
                 
                 <div className="flex items-center text-white/70">
                   <Calendar size={16} className="mr-2" />
-                  <span>{new Date().toLocaleDateString()}</span>
+                  <span>
+                    {new Date().toLocaleDateString()} <span className="text-sm text-gray-300 ml-2">(Tarehe)</span>
+                  </span>
                 </div>
                 
                 <div className="flex items-center text-white/70">
                   <Clock size={16} className="mr-2" />
-                  <span>{new Date().toLocaleTimeString()}</span>
+                  <span>
+                    {new Date().toLocaleTimeString()} <span className="text-sm text-gray-300 ml-2">(Saa)</span>
+                  </span>
                 </div>
                 
                 {location && (
                   <div className="flex items-center text-white/70">
                     <MapPin size={16} className="mr-2" />
-                    <span>{location.latitude.toFixed(6)}, {location.longitude.toFixed(6)}</span>
+                    <span>
+                      {location.latitude.toFixed(6)}, {location.longitude.toFixed(6)} <span className="text-sm text-gray-300 ml-2">(Mahali)</span>
+                    </span>
                   </div>
                 )}
               </div>
@@ -237,13 +250,13 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
                 <Check size={48} className="mx-auto" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">
-                Report Submitted Successfully!
+                Report Submitted Successfully! <span className="text-sm text-gray-300 ml-2">(Ripoti Imetumwa Kwa Mafanikio!)</span>
               </h3>
               <p className="text-white/70 mb-4">
-                Your wildlife report has been {navigator.onLine ? 'submitted' : 'saved offline'} and a PDF has been downloaded to your device.
+                Your wildlife report has been {navigator.onLine ? 'submitted' : 'saved offline'} <span className="text-sm text-gray-300 ml-2">(Ripoti yako imetumwa {navigator.onLine ? 'mtandaoni' : 'ikiwa nje ya mtandao'})</span> and a PDF has been downloaded to your device. <span className="text-sm text-gray-300 ml-2">(PDF imeshushwa kwenye kifaa chako)</span>
               </p>
               <p className="text-sm text-white/60">
-                Report ID: {report.id}
+                Report ID: {report.id} <span className="text-sm text-gray-300 ml-2">(Nambari ya Ripoti)</span>
               </p>
             </GlassCard>
           ) : (
@@ -256,7 +269,7 @@ export const ReportGeneration: React.FC<ReportGenerationProps> = ({
                 className="flex-1 max-w-xs"
               >
                 <Send size={20} />
-                Submit Report
+                Submit Report <span className="text-sm text-gray-300 ml-2">(Tuma Ripoti)</span>
               </Button>
             </div>
           )}

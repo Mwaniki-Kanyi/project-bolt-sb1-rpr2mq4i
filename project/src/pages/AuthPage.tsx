@@ -84,8 +84,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
               alt="Sentry Jamii"
               className="w-16 h-16 mx-auto mb-4 rounded-xl shadow-lg"
             />
-            <h1 className="text-2xl font-bold text-white mb-2">
-              {getUserTypeTitle(userType)} {isLogin ? 'Login' : 'Sign Up'}
+            <h1 className="text-3xl font-bold mb-4">
+              Sign In <span className="text-sm text-gray-400 ml-2">(Ingia)</span>
             </h1>
             <p className="text-white/70">
               {isLogin ? 'Welcome back!' : 'Create your account to get started'}
@@ -102,8 +102,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
             )}
 
             <div>
-              <label className="block text-white/80 text-sm font-medium mb-2">
-                Email Address
+              <label className="block mb-2">
+                Email <span className="text-sm text-gray-400 ml-2">(Barua Pepe)</span>
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={20} />
@@ -119,8 +119,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
             </div>
 
             <div>
-              <label className="block text-white/80 text-sm font-medium mb-2">
-                Password
+              <label className="block mb-2 mt-4">
+                Password <span className="text-sm text-gray-400 ml-2">(Nenosiri)</span>
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" size={20} />
@@ -135,14 +135,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
               </div>
             </div>
 
-            <Button
-              type="submit"
-              variant="primary"
-              size="lg"
-              loading={loading}
-              className="w-full"
-            >
-              {isLogin ? 'Sign In' : 'Create Account'}
+            <Button type="submit" variant="primary" size="lg" className="w-full mt-6">
+              Sign In <span className="text-sm text-gray-400 ml-2">(Ingia)</span>
             </Button>
 
             <div className="text-center">
@@ -162,25 +156,27 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
               className="text-emerald-500 hover:underline text-sm"
               onClick={() => setShowForgotPassword(true)}
             >
-              Forgot Password?
+              Forgot Password? <span className="text-sm text-gray-400 ml-2">(Umesahau Nenosiri?)</span>
             </button>
           </p>
 
           {showForgotPassword && (
             <div className="my-4 p-4 bg-white rounded shadow">
-              <h3 className="font-bold mb-2 text-gray-900">Reset Password</h3>
+              <h3 className="font-bold mb-2 text-gray-900">
+                Reset Password <span className="text-sm text-gray-400 ml-2">(Weka Upya Nenosiri)</span>
+              </h3>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email (Weka Barua Pepe Yako)"
                 value={resetEmail}
                 onChange={e => setResetEmail(e.target.value)}
                 className="border p-2 w-full mb-2 text-gray-900 bg-white"
               />
               <Button onClick={handleForgotPassword} variant="primary" size="sm">
-                Send Reset Email
+                Send Reset Email <span className="text-sm text-gray-400 ml-2">(Tuma Baruapepe ya Urejeshaji)</span>
               </Button>
               <Button onClick={() => setShowForgotPassword(false)} variant="secondary" size="sm" className="ml-2">
-                Cancel
+                Cancel <span className="text-sm text-gray-400 ml-2">(Ghairi)</span>
               </Button>
               {resetMessage && <p className="text-green-700 mt-2">{resetMessage}</p>}
               {resetError && <p className="text-red-700 mt-2">{resetError}</p>}

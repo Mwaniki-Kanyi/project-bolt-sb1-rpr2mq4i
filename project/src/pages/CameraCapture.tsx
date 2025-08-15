@@ -114,19 +114,23 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onBack 
             className="flex items-center text-white/80 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeft size={20} className="mr-2" />
-            Back
+            Back <span className="text-sm text-gray-300 ml-2">(Rudi Nyuma)</span>
           </button>
           
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">Capture Wildlife</h1>
-            <p className="text-white/70">Take a photo of the wildlife you've spotted</p>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              Capture Wildlife <span className="text-sm text-gray-300 ml-2">(Piga Picha ya Wanyamapori)</span>
+            </h1>
+            <p className="text-white/70">
+              Take a photo of the wildlife you've spotted <span className="text-sm text-gray-300 ml-2">(Piga picha ya mnyama uliyemuona)</span>
+            </p>
           </div>
         </motion.div>
 
         <GlassCard className="text-center">
           {error && (
             <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-3 text-red-200 text-sm mb-6">
-              {error}
+              {error} <span className="text-sm text-gray-300 ml-2">(Hitilafu)</span>
             </div>
           )}
 
@@ -139,10 +143,10 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onBack 
               <div className="space-y-4">
                 <Button onClick={startCamera} variant="primary" size="lg" className="w-full">
                   <Camera size={20} />
-                  Open Camera
+                  Open Camera <span className="text-sm text-gray-300 ml-2">(Fungua Kamera)</span>
                 </Button>
                 
-                <div className="text-white/60">or</div>
+                <div className="text-white/60">or <span className="text-sm text-gray-300 ml-2">(au)</span></div>
                 
                 <Button
                   onClick={() => fileInputRef.current?.click()}
@@ -150,7 +154,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onBack 
                   size="lg"
                   className="w-full"
                 >
-                  Upload from Gallery
+                  Upload from Gallery <span className="text-sm text-gray-300 ml-2">(Pakia Kutoka Kwenye Matunzio)</span>
                 </Button>
                 
                 <input
@@ -178,11 +182,11 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onBack 
               <div className="flex justify-center space-x-4">
                 <Button onClick={stopCamera} variant="secondary">
                   <X size={20} />
-                  Cancel
+                  Cancel <span className="text-sm text-gray-300 ml-2">(Ghairi)</span>
                 </Button>
                 <Button onClick={capturePhoto} variant="primary" size="lg">
                   <Camera size={20} />
-                  Capture
+                  Capture <span className="text-sm text-gray-300 ml-2">(Piga Picha)</span>
                 </Button>
               </div>
             </div>
@@ -201,11 +205,11 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onBack 
               <div className="flex justify-center space-x-4">
                 <Button onClick={retakePhoto} variant="secondary">
                   <RotateCcw size={20} />
-                  Retake
+                  Retake <span className="text-sm text-gray-300 ml-2">(Piga Tena)</span>
                 </Button>
                 <Button onClick={confirmPhoto} variant="primary" size="lg">
                   <Check size={20} />
-                  Confirm
+                  Confirm <span className="text-sm text-gray-300 ml-2">(Thibitisha)</span>
                 </Button>
               </div>
             </div>
