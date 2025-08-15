@@ -4,6 +4,7 @@ import { Mail, Lock, ArrowLeft } from 'lucide-react';
 import { GlassCard } from '../components/GlassCard';
 import { Button } from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 
 interface AuthPageProps {
   userType: string;
@@ -16,6 +17,10 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetMessage, setResetMessage] = useState('');
+  const [resetError, setResetError] = useState('');
 
   const { signIn, signUp } = useAuth();
 
@@ -34,6 +39,17 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
       setError(err.message || 'An error occurred');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    setResetError('');
+    setResetMessage('');
+    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail);
+    if (error) {
+      setResetError(error.message);
+    } else {
+      setResetMessage('Password reset email sent! Check your inbox.');
     }
   };
 
@@ -139,6 +155,37 @@ export const AuthPage: React.FC<AuthPageProps> = ({ userType, onBack }) => {
               </button>
             </div>
           </form>
+
+          <p className="text-right mt-2">
+            <button
+              type="button"
+              className="text-emerald-500 hover:underline text-sm"
+              onClick={() => setShowForgotPassword(true)}
+            >
+              Forgot Password?
+            </button>
+          </p>
+
+          {showForgotPassword && (
+            <div className="my-4 p-4 bg-white rounded shadow">
+              <h3 className="font-bold mb-2 text-gray-900">Reset Password</h3>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={resetEmail}
+                onChange={e => setResetEmail(e.target.value)}
+                className="border p-2 w-full mb-2 text-gray-900 bg-white"
+              />
+              <Button onClick={handleForgotPassword} variant="primary" size="sm">
+                Send Reset Email
+              </Button>
+              <Button onClick={() => setShowForgotPassword(false)} variant="secondary" size="sm" className="ml-2">
+                Cancel
+              </Button>
+              {resetMessage && <p className="text-green-700 mt-2">{resetMessage}</p>}
+              {resetError && <p className="text-red-700 mt-2">{resetError}</p>}
+            </div>
+          )}
         </GlassCard>
       </div>
     </div>
