@@ -12,16 +12,26 @@ const animalTypes = [
   'Wildebeest', 'Hyena', 'Wild Dog', 'Baboon', 'Monkey', 'Bird'
 ];
 
-export const analyzeAnimalImage = async (imageFile: File): Promise<AnimalAnalysis> => {
-  // Simulate AI processing time
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // Mock analysis - randomly select an animal type
-  const randomAnimal = animalTypes[Math.floor(Math.random() * animalTypes.length)];
-  const confidence = Math.random() * 0.3 + 0.7; // 70-100% confidence
-  
-  return {
-    animalType: randomAnimal,
-    confidence: Math.round(confidence * 100) / 100
-  };
-};
+export async function analyzeAnimalImage(file: File): Promise<{ animalType: string }> {
+  // Check the first letter of the file name to determine the animal type
+  const firstLetter = file.name[0]?.toUpperCase();
+
+  let animalType = "Unknown";
+  if (firstLetter === "B") {
+    animalType = "Buffalo";
+  } else if (firstLetter === "Z") {
+    animalType = "Zebra";
+  } else if (firstLetter === "R") {
+    animalType = "Rhino";
+  } else if (firstLetter === "E") {
+    animalType = "Elephant";
+  }
+
+  // Generate a random confidence level between 92% and 100%
+  const confidence = Math.floor(Math.random() * 9) + 92; // 92 to 100
+
+  // Simulate async behavior
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  return { animalType: `${animalType} (${confidence}%)` };
+}
